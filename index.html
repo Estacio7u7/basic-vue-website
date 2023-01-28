@@ -13,10 +13,10 @@
         const vm = Vue.createApp({ 
             data(){
                 return {
-                    text:"Hola Vue"
+                    text:'<img src="https://pbs.twimg.com/profile_images/1404443005826867200/53xs9_qN_400x400.jpg" alt=""></img>'
                 };
             },
-            template:`<div v-text="text"></div>`
+            template:`<div v-html="text"></div>`
         }).mount("#app");
     </script>
 </body>
