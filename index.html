@@ -13,26 +13,36 @@
         const vm = Vue.createApp({ 
             data(){
                 return {
-                    counter: 0
+                    targetText: "Hola VueJS"
                 };
             },
             methods:{
-                increment(){
-                    this.counter++;
-                },
-                decrement(){
-                    this.counter=this.counter-1;
+                inputChanged(e){
+                    this.targetText = e.target.value;
                 }
+                
             },
             template:
             `
-            <div style="text-align: center;">
-            <p style="width: 50%"> Resultado del contador: {{ counter}} </p>
-            <button v-on:click="increment" v-on:keyup="increment" style="margin: 10px;"> Sumar </button>
-            <button v-on:click="decrement" v-on:keyup="decrement" style="margin: 10px;"> Restar </button>
-            </div>
+                <p>{{ targetText}}</p>
+                <input
+                    type="text"
+                    v-on:input="inputChanged"
+                    v-bind:value="targetText"
+                >
             `
+            /*Atributos -> :        Eventos -> @
+            `
+                <p>{{ targetText}}</p>
+                <input
+                    type="text"
+                    @input="inputChanged"
+                    :value="targetText"
+                >
+            `*/
+
         }).mount("#app");
+
     </script>
     
 </body>
