@@ -12,35 +12,34 @@
     <script>
         const vm = Vue.createApp({ 
             data(){
-                return {
-                    targetText: "Hola VueJS"
+                return{
+                    puerta: "Puerta Cerrada",
+                    button: "Abrir",
+                    isOpen: false
                 };
             },
-            methods:{
-                inputChanged(e){
-                    this.targetText = e.target.value;
+            watch:{
+                isOpen(value){
+                    if(value){
+                        this.puerta = "Puerta Abierta";
+                        this.button = "Cerrar";
+                    } else {
+                        this.puerta = "Puerta Cerrada";
+                        this.button = "Abrir";
+                    }
                 }
-                
             },
-            template:
+            methods:{
+                changeDoor(){
+                    this.isOpen = !this.isOpen;
+                    console.log(this.isOpen);
+                }
+            },
+            template:`<div> {{ puerta }} </div>
+            <button @click="changeDoor"> {{ button }}</button>
             `
-                <p>{{ targetText}}</p>
-                <input
-                    type="text"
-                    v-on:input="inputChanged"
-                    v-bind:value="targetText"
-                >
-            `
-            /*Atributos -> :        Eventos -> @
-            `
-                <p>{{ targetText}}</p>
-                <input
-                    type="text"
-                    @input="inputChanged"
-                    :value="targetText"
-                >
-            `*/
 
+            
         }).mount("#app");
 
     </script>
