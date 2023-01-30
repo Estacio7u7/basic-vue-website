@@ -8,7 +8,7 @@
 </head>
 <body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <div id="app"></div>
+    <div id="app" class="main-container"></div>
     <script>
         const vm = Vue.createApp({ 
             data(){
@@ -35,14 +35,66 @@
                     console.log(this.isOpen);
                 }
             },
-            template:`<div> {{ puerta }} </div>
-            <button @click="changeDoor"> {{ button }}</button>
+            computed:{
+                styles() {
+                    return this.isOpen ? ['open-door'] :['close-door']
+                }
+            },
+            template:`
+            <div :class="styles"></div>
+            <div> {{ puerta }} </div>
+            <button @click="changeDoor" class="clickable-button"> {{ button }}</button>
             `
-
-            
         }).mount("#app");
 
     </script>
+    <style>
+        .html {
+            font-size: 62.5%;
+        }
+        body {
+            background-color: gray;
+        }
+        
+        .main-container{
+            width: 50%;
+            height: 10rem;
+            margin: 5rem auto;
+            text-align: center;
+            border: .1rem solid gray;
+        }
+        figure {
+            width: 15rem;
+            margin: 1rem auto;
+            margin: 1rem;
+        }
+        .clickable-button{
+            border: .1rem solid black;
+            width: 10rem;
+            height: 3.5rem;
+            border-radius: .5rem;
+            margin: 5rem;
+            background-color: blue;
+            color: white;
+            font-size: 3rem;
+            display: inline-block;
+        }
+        .open-door{
+            width: 15rem;
+            height: 15rem;
+            background-color: white;
+            display: inline-block;
+        }
+        .close-door{
+            width: 15rem;
+            height: 15rem;
+            background-color: black;
+            display: inline-block;
+        }
+
+
+    </style> 
+
     
 </body>
 </html>
